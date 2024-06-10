@@ -1,5 +1,11 @@
-import { startStimulusApp } from '@symfony/stimulus-bundle';
+// assets/bootstrap.js
 
-const app = startStimulusApp();
-// register any custom, 3rd party controllers here
-// app.register('some_controller_name', SomeImportedController);
+// Import Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// Import Bootstrap JS components as needed
+import "bootstrap/js/dist/util";
+import "bootstrap/js/dist/modal";
+// Import other Bootstrap components as needed
+
+// You can add more Bootstrap components here as needed

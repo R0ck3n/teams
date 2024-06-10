@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route('/teams')]
 class TeamsController extends AbstractController
 {
     #[Route('/', name: 'app_teams_index', methods: ['GET'])]
@@ -21,7 +22,7 @@ class TeamsController extends AbstractController
         ]);
     }
 
-    #[Route('/teams/new', name: 'app_teams_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_teams_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $team = new Teams();
@@ -41,7 +42,7 @@ class TeamsController extends AbstractController
         ]);
     }
 
-    #[Route('/teams/{id}', name: 'app_teams_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_teams_show', methods: ['GET'])]
     public function show(Teams $team): Response
     {
         return $this->render('teams/show.html.twig', [
@@ -49,7 +50,7 @@ class TeamsController extends AbstractController
         ]);
     }
 
-    #[Route('/teams/{id}/edit', name: 'app_teams_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_teams_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Teams $team, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(TeamsType::class, $team);
@@ -67,7 +68,7 @@ class TeamsController extends AbstractController
         ]);
     }
 
-    #[Route('/teams/{id}', name: 'app_teams_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_teams_delete', methods: ['POST'])]
     public function delete(Request $request, Teams $team, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$team->getId(), $request->getPayload()->getString('_token'))) {

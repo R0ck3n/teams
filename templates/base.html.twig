@@ -5,27 +5,42 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
-        <header>
-            <nav>
-                <ul>
-                    <li>
-                        <h1>Hello Teams </h1>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-        <footer>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('app_index') }}">Team Builder</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_index') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_builder') }}">Builder</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-        </footer>
+    </header>
+
+    <main class="container mt-4">
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer class="footer bg-dark text-white text-center py-3">
+        <div class="container">
+            Copyright © Seven Valley {{ "now"|date('Y') }}
+        </div>
+    </footer>
     </body>
 </html>
