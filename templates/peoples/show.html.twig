@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Peoples{% endblock %}
+
+{% block body %}
+    <h1>Peoples</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ people.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ people.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ people.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Teamnumber</th>
+                <td>{{ people.teamnumber }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ people.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_peoples_index') }}">back to list</a>
+
+    <a href="{{ path('app_peoples_edit', {'id': people.id}) }}">edit</a>
+
+    {{ include('peoples/_delete_form.html.twig') }}
+{% endblock %}
