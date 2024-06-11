@@ -51,7 +51,7 @@ class Peoples
 
     public function setFirstname(string $firstname): static
     {
-        $this->firstname = $firstname;
+        $this->firstname = ucfirst($firstname);
 
         return $this;
     }
@@ -63,7 +63,7 @@ class Peoples
 
     public function setLastname(string $lastname): static
     {
-        $this->lastname = $lastname;
+        $this->lastname = ucfirst($lastname);
 
         return $this;
     }

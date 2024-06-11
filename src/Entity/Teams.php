@@ -50,7 +50,7 @@ class Teams
 
     public function setName(string $name): static
     {
-        $this->name = $name;
+        $this->name = ucfirst($name);
 
         return $this;
     }
