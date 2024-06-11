@@ -71,11 +71,13 @@ class TeamsController extends AbstractController
     #[Route('/{id}', name: 'app_teams_delete', methods: ['POST'])]
     public function delete(Request $request, Teams $team, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$team->getId(), $request->getPayload()->getString('_token'))) {
+        $submittedToken = $request->request->get('_token');
+        
+        if ($this->isCsrfTokenValid('delete' . $team->getId(), $submittedToken)) {
             $entityManager->remove($team);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_teams_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_builder', [], Response::HTTP_SEE_OTHER);
     }
 }
