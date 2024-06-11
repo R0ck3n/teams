@@ -14,10 +14,15 @@ class TeamsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
+            ->add('name',null,[
+                'label'=>'Ajouter une équipe',
+                'attr'=>[
+                    'placeholder'=>'Équipe A...',
+                ],
             ])
+            // ->add('createdAt', null, [
+            //     'widget' => 'single_text',
+            // ])
             // ->add('peoples', EntityType::class, [
             //     'class' => Peoples::class,
             //     'choice_label' => 'id',

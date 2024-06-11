@@ -24,16 +24,25 @@ class PeoplesType extends AbstractType
 
         $builder
             ->add('firstname', null, [
-                'attr' => ['class' => 'form-control']
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder'=>'Manu...'
+                    ]
             ])
             ->add('lastname', null, [
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control',
+                'placeholder'=>'LaPointe...'
+                ]
             ])
             ->add('teamnumber', null, [
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control',
+                'placeholder'=>'12...'
+                ]
             ])
             ->add('email', null, [
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control',
+                'placeholder'=>'manu33@carmail.fr'
+                ]
             ])
             ->add('teams', EntityType::class, [
                 'class' => Teams::class,

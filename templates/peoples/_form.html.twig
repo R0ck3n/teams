@@ -1,4 +1,13 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<section class="w-25">
+	{{ form_start(peopleform) }}
+	<div class="p-3 bg-light">
+		<p>Ajouter un membre :</p>
+		{% for child in peopleform %}
+			<div class="form-group">
+				{{ form_widget(child, {'attr': {'class': 'form-control mb-3'}}) }}
+			</div>
+		{% endfor %}
+		<button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+	</div>
+	{{ form_end(peopleform) }}
+</section>

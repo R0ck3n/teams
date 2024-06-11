@@ -1,4 +1,17 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<section>
+	{{ form_start(teamform) }}
+	<div class="p-3 bg-light">
+		<p>Ajouter une équipe :</p>
+		<div class="form-row d-flex gap-4">
+			{% for child in teamform %}
+				<div class="form-group {% if loop.index == 1 %}w-75{% endif %}">
+					{{ form_widget(child, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			{% endfor %}
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+			</div>
+		</div>
+	</div>
+	{{ form_end(teamform) }}
+</section>
