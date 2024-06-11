@@ -33,6 +33,11 @@ class Teams
         $this->createdAt = new \DateTimeImmutable(); // Set default current timestamp
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

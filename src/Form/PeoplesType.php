@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Form;
 
 use App\Entity\Peoples;
 use App\Entity\Teams;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,19 +11,42 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PeoplesType extends AbstractType
 {
+    public function __construct(
+        private EntityManagerInterface $entityManager
+    ) {}
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $teams = $this->entityManager->getRepository(Teams::class)->findAll();
+        $newTeam = new Teams();
+        $newTeam -> setName( "Pas d'équipe") ;
+        
+
         $builder
-            ->add('firstname')
-            ->add('lastname')
-            ->add('teamnumber')
-            ->add('email')
+            ->add('firstname', null, [
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('lastname', null, [
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('teamnumber', null, [
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('email', null, [
+                'attr' => ['class' => 'form-control']
+            ])
             ->add('teams', EntityType::class, [
                 'class' => Teams::class,
-                'choice_label' => 'id',
+                'choices' =>  [$newTeam,...$teams],
+                'choice_value' => static function (?Teams $team) {
+                    return $team === null ? null : $team->getId();
+                },
+                'choice_label' => 'name',
                 'multiple' => true,
-            ])
-        ;
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

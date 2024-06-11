@@ -3,36 +3,35 @@
 {% block title %}Teams Builder{% endblock %}
 
 {% block body %}
-    <h1>Teams Builder</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for team in teams %}
-            <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ team.name }}</td>
-                <td>{{ team.createdAt ? team.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td class="d-flex">
-                    <a href="{{ path('app_teams_show', {'id': team.id}) }}">voir plus</a>
-                    <a href="{{ path('app_teams_edit', {'id': team.id}) }}">Modifier</a>
-                    <a href="{{ path('app_teams_delete', {'id': team.id}) }}">Supprimer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">Aucune Équipe encore crée</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% for team in teams %}
+        <div class="w-50">
+            <h2 class="bg-light p-2">{{ team.name }}</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for people in team.peoples %}
+                    <tr>
+                        <td>{{ people.firstname }}</td>
+                        <td>{{ people.lastname }}</td> 
+                    </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="2">Aucune personne dans cette équipe</td> 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="w-50">
+            <p>Aucune équipe encore créée</p> 
+        </div>
+    {% endfor %}
 
-    <a href="{{ path('app_teams_new') }}">Create new</a>
 {% endblock %}

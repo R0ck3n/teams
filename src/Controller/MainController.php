@@ -12,10 +12,12 @@ class MainController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
     public function index(TeamsRepository $teamsRepository): Response
-    {
+    {   
+        $teams = $teamsRepository->findAll();
+
 
         return $this->render('pages/home.html.twig', [
-            'teams' => $teamsRepository->findAll(),
+            'teams' => $teams,
         ]);
 
     }

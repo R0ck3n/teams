@@ -18,11 +18,11 @@ class TeamsType extends AbstractType
             ->add('createdAt', null, [
                 'widget' => 'single_text',
             ])
-            ->add('peoples', EntityType::class, [
-                'class' => Peoples::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
+            // ->add('peoples', EntityType::class, [
+            //     'class' => Peoples::class,
+            //     'choice_label' => 'id',
+            //     'multiple' => true,
+            // ])
         ;
     }
 
